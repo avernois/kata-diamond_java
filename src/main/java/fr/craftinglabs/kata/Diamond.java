@@ -7,11 +7,11 @@ public class Diamond {
         
         if (c.equals('D')) {
             String diamond = diamondTip(size) + "\n";
-            diamond += diamondWall(size, 2, "B") + "\n";
-            diamond += diamondWall(size, 1, "C") + "\n";
-            diamond += diamondWall(size, 0, "D") + "\n";
-            diamond += diamondWall(size, -1, "C") + "\n";
-            diamond += diamondWall(size, -2, "B") + "\n";
+            diamond += diamondWall(size, 2)  + "\n";
+            diamond += diamondWall(size, 1)  + "\n";
+            diamond += diamondWall(size, 0)  + "\n";
+            diamond += diamondWall(size, -1) + "\n";
+            diamond += diamondWall(size, -2) + "\n";
             diamond += diamondTip(size);
             
             return diamond;
@@ -19,31 +19,35 @@ public class Diamond {
         
         if (c.equals('C')) {
             return diamondTip(size) + "\n"
-                 + diamondWall(size, 1, "B") + "\n"
-                 + diamondWall(size, 0, "C") + "\n"
-                 + diamondWall(size, -1, "B") + "\n"
+                 + diamondWall(size, 1)  + "\n"
+                 + diamondWall(size, 0)  + "\n"
+                 + diamondWall(size, -1) + "\n"
                  + diamondTip(size);
         }
         
         if (c.equals('B')) {
             return diamondTip(size) + "\n"
-                    + diamondWall(size, 0, "B") + "\n"
+                    + diamondWall(size, 0) + "\n"
                  + diamondTip(size);
         }
         
         return "A";
     }
 
-    private static String diamondWall(int size, int floor, String wall) {
+    private static String diamondWall(int size, int floor) {
         int width = size * 2 - 1;
         int absoluteFloor = Math.abs(floor);
-        return manySpaces(absoluteFloor) + wall + manySpaces(width - 2*(absoluteFloor + 1)) + wall + manySpaces(absoluteFloor);
+        
+        Character w = Character.toChars('A' + size - absoluteFloor -1)[0]; 
+        return manySpaces(absoluteFloor) + w + manySpaces(width - 2*(absoluteFloor + 1)) + w + manySpaces(absoluteFloor);
     }
 
     private static String diamondTip(int size) {
         return manySpaces(size -1) + "A" + manySpaces(size - 1);
     }
 
+    
+    
     private static String manySpaces(int nbSpaces) {
         StringBuilder builder = new StringBuilder();
         

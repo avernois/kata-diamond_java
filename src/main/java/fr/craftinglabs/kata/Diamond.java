@@ -5,34 +5,18 @@ public class Diamond {
     public static String create(Character c) {
         int size = c - 'A' + 1;
         
-        if (c.equals('D')) {
-            String diamond = diamondTip(size) + "\n";
-            diamond += diamondWall(size, 2)  + "\n";
-            diamond += diamondWall(size, 1)  + "\n";
-            diamond += diamondWall(size, 0)  + "\n";
-            diamond += diamondWall(size, -1) + "\n";
-            diamond += diamondWall(size, -2) + "\n";
-            diamond += diamondTip(size);
-            
-            return diamond;
+        if(size == 1) return "A";
+        
+        String diamond = diamondTip(size) + "\n";
+        
+        for (int floor = size - 2; floor >= -(size - 2) ; floor --) {
+            diamond += diamondWall(size, floor)  + "\n";
         }
         
-        if (c.equals('C')) {
-            return diamondTip(size) + "\n"
-                 + diamondWall(size, 1)  + "\n"
-                 + diamondWall(size, 0)  + "\n"
-                 + diamondWall(size, -1) + "\n"
-                 + diamondTip(size);
-        }
+        diamond += diamondTip(size);
         
-        if (c.equals('B')) {
-            return diamondTip(size) + "\n"
-                    + diamondWall(size, 0) + "\n"
-                 + diamondTip(size);
-        }
-        
-        return "A";
-    }
+        return diamond;
+    }        
 
     private static String diamondWall(int size, int floor) {
         int width = size * 2 - 1;

@@ -5,6 +5,16 @@ public class Diamond {
     public static String create(Character c) {
         int size = c - 'A' + 1;
         
+        if (c.equals('D')) {
+            return diamondTip(size) + "\n"
+                    + manySpaces(2) + "B" + manySpaces(1) + "B" + manySpaces(2) + "\n"
+                    + manySpaces(1) + "C" + manySpaces(3) + "C" + manySpaces(1) + "\n"
+                    + manySpaces(0) + "D" + manySpaces(5) + "D" + manySpaces(0) + "\n"
+                    + manySpaces(1) + "C" + manySpaces(3) + "C" + manySpaces(1) + "\n"
+                    + manySpaces(2) + "B" + manySpaces(1) + "B" + manySpaces(2) + "\n"
+                    + diamondTip(size);
+        }
+        
         if (c.equals('C')) {
             return diamondTip(size) + "\n"
                  +  manySpaces(1) + "B" + manySpaces(1)   + "B" + manySpaces(1) + "\n"

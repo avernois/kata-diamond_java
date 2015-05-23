@@ -25,4 +25,15 @@ public class DiamondTest {
                    + "  A  ", Diamond.create('C'));
     }
     
+    @Test public void 
+    should_draw_diamond_D() {
+        assertEquals("   A   \n"
+                   + "  B B  \n"
+                   + " C   C \n"
+                   + "D     D\n"
+                   + " C   C \n"
+                   + "  B B  \n"
+                   + "   A   ", Diamond.create('D'));
+    }
+    
 }

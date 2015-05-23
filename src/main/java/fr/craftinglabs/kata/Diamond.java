@@ -7,11 +7,11 @@ public class Diamond {
         
         if (c.equals('D')) {
             String diamond = diamondTip(size) + "\n";
-            diamond += diamondWall(size, 3, "B") + "\n";
-            diamond += diamondWall(size, 2, "C") + "\n";
-            diamond += diamondWall(size, 1, "D") + "\n";
-            diamond += diamondWall(size, 2, "C") + "\n";
-            diamond += diamondWall(size, 3, "B") + "\n";
+            diamond += diamondWall(size, 2, "B") + "\n";
+            diamond += diamondWall(size, 1, "C") + "\n";
+            diamond += diamondWall(size, 0, "D") + "\n";
+            diamond += diamondWall(size, -1, "C") + "\n";
+            diamond += diamondWall(size, -2, "B") + "\n";
             diamond += diamondTip(size);
             
             return diamond;
@@ -19,15 +19,15 @@ public class Diamond {
         
         if (c.equals('C')) {
             return diamondTip(size) + "\n"
-                 + diamondWall(size, 2, "B") + "\n"
-                 + diamondWall(size, 1, "C") + "\n"
-                 + diamondWall(size, 2, "B") + "\n"
+                 + diamondWall(size, 1, "B") + "\n"
+                 + diamondWall(size, 0, "C") + "\n"
+                 + diamondWall(size, -1, "B") + "\n"
                  + diamondTip(size);
         }
         
         if (c.equals('B')) {
             return diamondTip(size) + "\n"
-                    + diamondWall(size, 1, "B") + "\n"
+                    + diamondWall(size, 0, "B") + "\n"
                  + diamondTip(size);
         }
         
@@ -36,7 +36,8 @@ public class Diamond {
 
     private static String diamondWall(int size, int floor, String wall) {
         int width = size * 2 - 1;
-        return manySpaces(floor - 1) + wall + manySpaces(width - 2*floor) + wall + manySpaces(floor - 1);
+        int absoluteFloor = Math.abs(floor);
+        return manySpaces(absoluteFloor) + wall + manySpaces(width - 2*(absoluteFloor + 1)) + wall + manySpaces(absoluteFloor);
     }
 
     private static String diamondTip(int size) {

@@ -4,26 +4,14 @@ public class Diamond {
 
     public static String create(Character c) {
         int size = c - 'A' + 1;
-        int width = size * 2 - 1;
         
         if (c.equals('D')) {
             String diamond = diamondTip(size) + "\n";
-            int floor = 3;
-            diamond += manySpaces(floor - 1) + "B" + manySpaces(width - 2*floor) + "B" + manySpaces(floor - 1);
-            diamond += "\n";
-            floor = 2;
-            diamond += manySpaces(floor - 1) + "C" + manySpaces(width - 2*floor) + "C" + manySpaces(floor - 1);
-            diamond += "\n";
-            floor = 1;
-            diamond += manySpaces(floor - 1) + "D" + manySpaces(width - 2*floor) + "D" + manySpaces(floor - 1);
-            diamond += "\n";
-            floor = 2;
-            diamond += manySpaces(floor - 1) + "C" + manySpaces(width - 2*floor) + "C" + manySpaces(floor - 1);
-            diamond += "\n";
-            floor = 3;
-            diamond += manySpaces(floor - 1) + "B" + manySpaces(width - 2*floor) + "B" + manySpaces(floor - 1);
-            diamond += "\n";
-
+            diamond += diamondWall(size, 3, "B") + "\n";
+            diamond += diamondWall(size, 2, "C") + "\n";
+            diamond += diamondWall(size, 1, "D") + "\n";
+            diamond += diamondWall(size, 2, "C") + "\n";
+            diamond += diamondWall(size, 3, "B") + "\n";
             diamond += diamondTip(size);
             
             return diamond;
@@ -31,19 +19,24 @@ public class Diamond {
         
         if (c.equals('C')) {
             return diamondTip(size) + "\n"
-                 + manySpaces(2 - 1) + "B" + manySpaces(width - 2*2) + "B" + manySpaces(2 - 1) + "\n"
-                 + manySpaces(1 - 1) + "C" + manySpaces(width - 2*1) + "C" + manySpaces(0) + "\n"
-                 + manySpaces(2 - 1) + "B" + manySpaces(width - 2*2) + "B" + manySpaces(2 - 1) + "\n"
+                 + diamondWall(size, 2, "B") + "\n"
+                 + diamondWall(size, 1, "C") + "\n"
+                 + diamondWall(size, 2, "B") + "\n"
                  + diamondTip(size);
         }
         
         if (c.equals('B')) {
             return diamondTip(size) + "\n"
-                 + manySpaces(0) + "B" + manySpaces(width - 2) + "B" + manySpaces(0) + "\n"
+                    + diamondWall(size, 1, "B") + "\n"
                  + diamondTip(size);
         }
         
         return "A";
+    }
+
+    private static String diamondWall(int size, int floor, String wall) {
+        int width = size * 2 - 1;
+        return manySpaces(floor - 1) + wall + manySpaces(width - 2*floor) + wall + manySpaces(floor - 1);
     }
 
     private static String diamondTip(int size) {

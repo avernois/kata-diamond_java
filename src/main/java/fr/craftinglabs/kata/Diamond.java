@@ -2,41 +2,63 @@ package fr.craftinglabs.kata;
 
 public class Diamond {
 
+    private static final String SEPARATOR = " ";
+    private static final String END_OF_LINE = "\n";
+
     public static String create(Character c) {
-        int size = c - 'A' + 1;
+        int size = sizeOfDIamond(c);
         
         if(size == 1) return "A";
         
-        String diamond = diamondTip(size) + "\n";
+        return buildDiamond(size);
+    }
+
+    private static String buildDiamond(int size) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(diamondTip(size)).append(END_OF_LINE);
         
         for (int floor = size - 2; floor >= -(size - 2) ; floor --) {
-            diamond += diamondWall(size, floor)  + "\n";
+            builder.append(diamondWall(size, floor)).append(END_OF_LINE);
         }
         
-        diamond += diamondTip(size);
+        builder.append(diamondTip(size));
         
-        return diamond;
+        return builder.toString();
+    }
+
+    private static int sizeOfDIamond(Character c) {
+        return c - 'A' + 1;
     }        
 
     private static String diamondWall(int size, int floor) {
         int width = size * 2 - 1;
         int absoluteFloor = Math.abs(floor);
         
-        Character w = Character.toChars('A' + size - absoluteFloor -1)[0]; 
-        return manySpaces(absoluteFloor) + w + manySpaces(width - 2*(absoluteFloor + 1)) + w + manySpaces(absoluteFloor);
+        Character wall = wallForTheFloor(size, absoluteFloor);
+        StringBuilder builder = new StringBuilder();
+        
+        return builder
+                .append(manySpaces(absoluteFloor))
+                .append(wall)
+                .append(manySpaces(width - 2*(absoluteFloor + 1)))
+                .append(wall)
+                .append(manySpaces(absoluteFloor))
+                .toString();
+    }
+
+    private static char wallForTheFloor(int size, int absoluteFloor) {
+        return Character.toChars('A' + size - absoluteFloor -1)[0];
     }
 
     private static String diamondTip(int size) {
         return manySpaces(size -1) + "A" + manySpaces(size - 1);
     }
 
-    
-    
     private static String manySpaces(int nbSpaces) {
         StringBuilder builder = new StringBuilder();
         
         for (int i = 0; i < nbSpaces; i++) {
-            builder.append(" ");
+            builder.append(SEPARATOR);
         }
         return builder.toString();
     }

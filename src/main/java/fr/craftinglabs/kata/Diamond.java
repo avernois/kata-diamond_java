@@ -7,13 +7,26 @@ public class Diamond {
         int width = size * 2 - 1;
         
         if (c.equals('D')) {
-            return diamondTip(size) + "\n"
-                    + manySpaces(3 - 1) + "B" + manySpaces(width - 2*3) + "B" + manySpaces(3 - 1) + "\n"
-                    + manySpaces(2 - 1) + "C" + manySpaces(width - 2*2) + "C" + manySpaces(2 - 1) + "\n"
-                    + manySpaces(1 - 1) + "D" + manySpaces(width - 2*1) + "D" + manySpaces(1 - 1) + "\n"
-                    + manySpaces(2 - 1) + "C" + manySpaces(width - 2*2) + "C" + manySpaces(2 - 1) + "\n"
-                    + manySpaces(3 - 1) + "B" + manySpaces(width - 2*3) + "B" + manySpaces(3 - 1) + "\n"
-                    + diamondTip(size);
+            String diamond = diamondTip(size) + "\n";
+            int floor = 3;
+            diamond += manySpaces(floor - 1) + "B" + manySpaces(width - 2*floor) + "B" + manySpaces(floor - 1);
+            diamond += "\n";
+            floor = 2;
+            diamond += manySpaces(floor - 1) + "C" + manySpaces(width - 2*floor) + "C" + manySpaces(floor - 1);
+            diamond += "\n";
+            floor = 1;
+            diamond += manySpaces(floor - 1) + "D" + manySpaces(width - 2*floor) + "D" + manySpaces(floor - 1);
+            diamond += "\n";
+            floor = 2;
+            diamond += manySpaces(floor - 1) + "C" + manySpaces(width - 2*floor) + "C" + manySpaces(floor - 1);
+            diamond += "\n";
+            floor = 3;
+            diamond += manySpaces(floor - 1) + "B" + manySpaces(width - 2*floor) + "B" + manySpaces(floor - 1);
+            diamond += "\n";
+
+            diamond += diamondTip(size);
+            
+            return diamond;
         }
         
         if (c.equals('C')) {

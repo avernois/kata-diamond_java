@@ -7,15 +7,15 @@ public class Diamond {
         
         if (c.equals('C')) {
             return diamondTip(size) + "\n"
-                 +  " " + "B" + " "   + "B" + " " + "\n"
-                 +   "" + "C" + "   " + "C" + ""  + "\n"
-                 + " "  + "B" + " "   + "B" + " " + "\n"
+                 +  manySpaces(1) + "B" + manySpaces(1)   + "B" + manySpaces(1) + "\n"
+                 +  manySpaces(0) + "C" + manySpaces(3)   + "C" + manySpaces(0) + "\n"
+                 +  manySpaces(1) + "B" + manySpaces(1)   + "B" + manySpaces(1) + "\n"
                  + diamondTip(size);
         }
         
         if (c.equals('B')) {
             return diamondTip(size) + "\n"
-                 + "B" + " " + "B" + "\n"
+                 + manySpaces(0) + "B" + manySpaces(1)   + "B" + manySpaces(0) + "\n"
                  + diamondTip(size);
         }
         
